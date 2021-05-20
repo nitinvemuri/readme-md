@@ -1,84 +1,65 @@
-const fs = require ('fs')
+const fs = require('fs');
 
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {
-  const selectLicense = data.license[0];
-  let currentlicense = ""
-  if (selectLicense = 'Apache') {
-    selectedLicense = `[![License:Apache] http://www.apache.org/licenses/](http://www.apache.org/licenses/LICENSE-2.0)`
+// Returns a license badge based on which license is used
+function renderLicenseBadge(data) {
+  const selectLice = data.license[0];
+  let thisLice = " "
+  if (selectLice === 'MIT') {
+    thisLice = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
   };
-  if (selectLicense = 'GNUAPGLv3') {
-    selectedLicense = `[![License: GNUAPGLv3]https://www.gnu.org/licenses/](https://opensource.org/licenses/AGPL-3.0)`
+   if (selectLice === 'GNU General Public') {
+    thisLice = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
   };
-  if (selectLicense = 'GNUGPLv3') {
-    selectedLicense = `[![License: GNUGPLv3]https://www.gnu.org/licenses/gpl-3.0-standalone.html](https://opensource.org/licenses/GPL-3.0)`
-
+  if (selectLice === 'Apache') {
+    thisLice = `[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
   };
-  if (selectLicense = 'GNULGPLv3') {
-    selectedLicense = `[![License: GNULPGLv3]https://www.gnu.org/licenses/gpl-3.0-standalone.html](https://opensource.org/licenses/GPL-3.0)`
+  if (selectLice === 'Unlicense') {
+    thisLice = `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`
   };
-  if (selectLicense = 'Mit') {
-    selectedLicense = `[![License: Mit]https://img.shields.io/badge/License-MIT-yellow.svg](https://opensource.org/licenses/MIT)` 
+  if (selectLice === ' ') {
+    thisLice = `" "`
   };
-  if (selectLicense = 'Unlicensed' === null) {
-    selectedLicense = "---"
+ return thisLice;
+};
 
-  };
-  return currentlicense;
-}
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
-
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-
+// Creates the markdown for README
+function generateMarkdown(data) {  
   return `# ${data.title}
 
-  Full Repo: "www.github.com/${data.github}/${data.title}
-
-
+  
   ${renderLicenseBadge(data)}
-  ## Table of Contents
-  * [Description](#Description)
-  * [Installation Instructions](#Installation)
-  * [Usage](#Usage) 
-  * [Contributors](#Contributions)
-  * [Tests](#Tests)
-  * [Questions](#Questions)
-  * [License](#License) 
-  ## Description
+  # Description
   ${data.description}
-  ## Installation
-  ${data.installation}
-  ## Usage
-  ${data.usage}
-  ## Contributions
-  ${data.contributions}
-  ## Tests
-  ${data.test}
-  ## Questions
-  Have any questions? 
-  - Contact me : ${data.email}
-  - GitHub Link : https://github.com/${data.github}
+  
+  # Table of Contents 
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contributing](#contributing)
+  * [Steps](#steps)
+  * [Contact](#contact)
+  
+  # Installation
+  The following must be installed or linked in order to run the application properly: ${data.installation}
+  
+  # Usage
+  ​${data.usage}
+ 
+  # License
+  This project is licensed under the ${data.license} license.
+  
+  # Contributing
+  ​Contributors: ${data.contributions}
+  
+  # Steps
+  ${data.steps}
+  
+  # Contact
+  If you have any questions about the repo, open an issue or contact me directly at ${data.email}.
 
-
-
-  ${renderLicenseLink(data)}
-  ${renderLicenseSection(data)}
-
-
+  Repo Link: https://github.com/${data.userName}
+  Direct Link: https://github.com/${data.userName}/${data.title}
 `;
 }
 
 module.exports = generateMarkdown;
-
-
-//
-
